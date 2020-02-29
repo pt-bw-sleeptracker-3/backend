@@ -37,6 +37,6 @@ server.use(session(sessionOptions));
 
 configureMiddleware(server);
 
-server.use('/api', apiRouter)
+server.use('/api', apiRouter);
 
 module.exports = server;
