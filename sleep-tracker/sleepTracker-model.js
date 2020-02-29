@@ -19,9 +19,15 @@ function add(userData) {
     return db("users").insert(userData);
 }
 
-function update(changes, id) {
-    return db("users").where({ id }).update(changes);
-}
+// function update(changes, id) {
+//     return db("users").where({ id }).update(changes);
+// }
+
+function update(id, user) {
+    return db('users')
+      .where('id', Number(id))
+      .update(user);
+  }
 
 function remove(id) {
     return db("users").where({ id }).del();
