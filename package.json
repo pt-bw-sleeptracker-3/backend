@@ -4,9 +4,9 @@
   "description": "For back end developer",
   "main": "index.js",
   "scripts": {
-    "test": "cross-env DB_ENV=testing jest --watch --verbose --runInBand",
+    "start": "node index.js",
     "server": "nodemon index.js",
-    "start": "node index.js"
+    "test": "cross-env DB_ENV=testing jest --watch --verbose --runInBand"
   },
   "repository": {
     "type": "git",

@@ -25,9 +25,11 @@ module.exports = {
       max: 10
     },
     migrations: {
-      tableName: './data/migration', 
+      directory: './data/migration', 
     },
-    seeds: './data/seeds',
+    seeds: {
+      directory: './data/seeds'
+    },
   },
 
   testing: {
