@@ -5,6 +5,10 @@ function find() {
     return db("users");
 }
 
+function findSleepData() {
+    return db("sleepData");
+}
+
 function findById(id) {
     return db("users").where({ id });
 }
@@ -19,9 +23,9 @@ function add(userData) {
     return db("users").insert(userData);
 }
 
-// function update(changes, id) {
-//     return db("users").where({ id }).update(changes);
-// }
+function addSleepData(sleepData) {
+    return db("sleepData").insert(sleepData);
+}
 
 function update(id, user) {
     return db('users')
@@ -29,8 +33,18 @@ function update(id, user) {
       .update(user);
   }
 
+function updateSleepData(id, data) {
+    return db('sleepData')
+      .where('id', Number(id))
+      .update(data);
+  }
+
 function remove(id) {
     return db("users").where({ id }).del();
+}
+
+function removeSleepData(id) {
+    return db("sleepData").where({ id }).del();
 }
 
 function findBy(filter) {
@@ -42,10 +56,14 @@ function findBy(filter) {
 
 module.exports = {
     find,
+    findSleepData,
     findBy,
     findById,
     findSteps,
     add,
+    addSleepData,
     update,
-    remove
+    updateSleepData,
+    remove,
+    removeSleepData
 };

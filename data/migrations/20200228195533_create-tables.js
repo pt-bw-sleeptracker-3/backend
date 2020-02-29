@@ -16,8 +16,6 @@ exports.up = function(knex) {
         .createTable('sleepData', tbl => {
             tbl.increments()
             tbl.integer('user_id')
-                // .references('sleepData_id')
-                // .inTable('users')
             tbl.string('date')
                 .notNullable()
             tbl.integer('sleepStart')
