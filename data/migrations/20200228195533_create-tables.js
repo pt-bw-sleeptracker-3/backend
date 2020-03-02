@@ -6,7 +6,6 @@ exports.up = function(knex) {
             .notNullable()
             .unique()
             tbl.string('password', 128).notNullable();
-            tbl.integer('sleepData_id')
             tbl.string("name",128)
                 .notNullable()
             tbl.string('email')
@@ -16,6 +15,12 @@ exports.up = function(knex) {
         .createTable('sleepData', tbl => {
             tbl.increments()
             tbl.integer('user_id')
+                .unsigned()
+                .notNullable()
+                .references('id')
+                .inTable('users')
+                .onDelete('CASCADE')
+                .onUpdate('CASCADE')
             tbl.string('date')
                 .notNullable()
             tbl.integer('sleepStart')
@@ -34,6 +39,7 @@ exports.up = function(knex) {
   
   exports.down = function(knex) {
     return knex.schema
-      .dropTableIfExist('sleepData')
-      .dropTableIfExist('users')
+        .dropTableIfExist('users')
+        .dropTableIfExist('sleepData')
+
   };
