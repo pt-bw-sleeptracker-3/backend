@@ -4,6 +4,8 @@ const authorize = require('./auth-required-middleware.js');
 
 const Users = require('../sleep-tracker/sleepTracker-model.js');
 
+
+// /api/auth/register
 router.post('/register', (req, res) => {
 
   let user = req.body;
@@ -19,6 +21,7 @@ router.post('/register', (req, res) => {
     });
 });
 
+// /api/auth/login
 router.post('/login', (req, res) => {
   let { username, password } = req.body;
 
