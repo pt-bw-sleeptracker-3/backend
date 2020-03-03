@@ -1,9 +1,21 @@
 const router = require('express').Router();
 const bcrypt = require('bcryptjs');
-const authorize = require('./auth-required-middleware.js');
+const jwt = require('jsonwebtoken');
 
 const Users = require('../sleep-tracker/sleepTracker-model.js');
 
+// -- MIDDLEWARE -- //
+
+function generateToken(user) {
+  const payload = {
+      username: user.username,
+      department: user.department
+  }
+  const options = {
+      expiresIn: '1d'
+  }
+  return jwt.sign(payload, process.env.JWT_SECRET || 'duh', options)
+}
 
 // /api/auth/register
 router.post('/register', (req, res) => {
@@ -21,25 +33,23 @@ router.post('/register', (req, res) => {
     });
 });
 
-// /api/auth/login
-router.post('/login', (req, res) => {
-  let { username, password } = req.body;
-
-
-  Users.findBy({ username })
-    .first()
-    .then(user => {
-      if (user && bcrypt.compareSync(password, user.password)) {
-        req.session.loggedin = true;
-        res.status(200).json({ message: `Welcome ${user.username}! have a... biscuit.`, });
-      } else {
-        res.status(401).json({ message: 'Nice try. But, no. Try. Try again.' });
-      }
-    })
-    .catch(error => {   
-      res.status(500).json(error);
-    });
-});
-
+router.post('/login', (req,res) => {
+  const { username, password } = req.body
+  if(!username || !password) {
+      res.status(403).json({message: 'invalid username and password'})
+  }else{
+      Users.findByUsername(username)
+          .then(user => {
+              if(user && bcrypt.compareSync(password, user.password)) {
+              const token = generateToken(user)
+              res.status(200).json({message: 'login successful', username: username, token})
+              }
+          })
+          .catch(err => {
+              console.log(err)
+              res.status(500).json({message: 'failed to login'})
+          })
+  }
+})
 
 module.exports = router;

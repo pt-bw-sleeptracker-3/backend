@@ -58,6 +58,10 @@ function findBy(filter) {
       .where(filter);
   }
 
+function findByUsername(username) {
+    return db('users').where({username}).first()
+}
+
 module.exports = {
     find,
     findSleepData,
@@ -65,6 +69,7 @@ module.exports = {
     findById,
     findByIdSleepData,
     findSteps,
+    findByUsername,
     add,
     addSleepData,
     update,

@@ -1,12 +1,28 @@
 const router = require('express').Router();
 const Users = require('./sleepTracker-model.js');
-const authrequired = require('../auth/auth-required-middleware.js');
+const jwt = require('jsonwebtoken')
 
-const restricted = require('../auth/restricted-middleware.js')
+// -- middleware -- //
+
+function validateToken(req,res,next) {
+  const token = req.headers.authorization
+  if(token) {
+      jwt.verify(token, process.env.JWT_SECRET || 'duh', (err, decodedToken) => {
+          if(err) {
+              res.status(401).json({message: 'token not valid'})
+          }else{
+              req.username = decodedToken
+              next()
+          }
+      })
+  }else{
+      res.status(400).json({message: 'no auth token'})
+  } 
+}
 
 //////////// USER ENDPOINTS ////////////////////////
 
-router.get('/', authrequired, restricted, (req, res) => {
+router.get('/', validateToken, (req, res) => {
   Users.find()
     .then(users => {
       res.json(users);
@@ -15,7 +31,7 @@ router.get('/', authrequired, restricted, (req, res) => {
 });
 
 // -- /api/users gets all users
-router.get('/users', authrequired, (req, res) => {
+router.get('/users', validateToken , (req, res) => {
   Users.find()
   .then(users => {
       res.json(users)
@@ -88,7 +104,7 @@ router.get('/sleepdata', (req, res) => {
 })
 
 
-// -- 
+// -- /api/users/sleepdata/:id
 router.get('/sleepdata/:id', (req, res) => {
   const id = req.params.id
   Users.findByIdSleepData(id)
