@@ -25,9 +25,8 @@ router.get('/users', authrequired, (req, res) => {
   })
 })
 
-router.get('/users/:id', (req, res) => {
+router.get('/:id', (req, res) => {
 const id = req.params.id
-
   Users.findById(id)
   .then(users => {
       res.json(users)
