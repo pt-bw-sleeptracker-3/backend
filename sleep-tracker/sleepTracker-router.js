@@ -86,7 +86,7 @@ router.get('/sleepdata', (req, res) => {
 })
 
 router.get('/sleepdata/:id', authrequired, (req, res) => {
-  Users.findById()
+  Users.findByIdSleepData()
   .then(users => {
       res.json(users)
   })

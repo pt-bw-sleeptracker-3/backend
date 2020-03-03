@@ -5,12 +5,16 @@ function find() {
     return db("users");
 }
 
-function findSleepData(id) {
-    return db("sleepData").where('user_id',id);
+function findSleepData() {
+    return db("sleepData");
 }
 
 function findById(id) {
     return db("users").where({ id });
+}
+
+function findByIdSleepData(id) {
+    return db("sleepData").where({ id });
 }
 
 function findSteps(id) {
@@ -59,6 +63,7 @@ module.exports = {
     findSleepData,
     findBy,
     findById,
+    findByIdSleepData,
     findSteps,
     add,
     addSleepData,
