@@ -50,7 +50,7 @@ router.get('/sleepdata/:id', (req, res) => {
 // -- /api/sleepdata
 router.post('/sleepdata/:id', (req, res) => {
   const data = req.body
-  Users.addSleepData(data)
+  Users.addSleepData({...data, user_id: req.params.id})
     .then(saved => {
       res.status(201).json(saved);
     })
