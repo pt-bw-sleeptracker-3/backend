@@ -92,75 +92,75 @@ router.delete("/userdelete/:id", (req, res) => {
 ////////////// SLEEPDATA ENDPOINTS /////////////////////////////
 
 
-// -- api/users/sleepdata
-router.get('/sleepdata', (req, res) => {
-  Users.findSleepData()
-  .then(sleepData => {
-      res.json(sleepData)
-  })
-  .catch(err => {
-      res.status(500).json({ message: 'Failed to get sleep data' })
-  })
-})
+// // -- api/users/sleepdata
+// router.get('/sleepdata', (req, res) => {
+//   Users.findSleepData()
+//   .then(sleepData => {
+//       res.json(sleepData)
+//   })
+//   .catch(err => {
+//       res.status(500).json({ message: 'Failed to get sleep data' })
+//   })
+// })
 
 
-// -- /api/users/sleepdata/:id
-router.get('/sleepdata/:id', (req, res) => {
-  const id = req.params.id
-  Users.findByIdSleepData(id)
-  .then(users => {
-      res.json(users)
-  })
-  .catch(err => {
-      res.status(500).json({ message: 'Failed to get Sleep Data' })
-  })
-})
+// // -- /api/users/sleepdata/:id
+// router.get('/sleepdata/:id', (req, res) => {
+//   const id = req.params.id
+//   Users.findByIdSleepData(id)
+//   .then(users => {
+//       res.json(users)
+//   })
+//   .catch(err => {
+//       res.status(500).json({ message: 'Failed to get Sleep Data' })
+//   })
+// })
 
 
-// -- /api/users/sleepdata
-router.post('/sleepdata', (req, res) => {
-  const data = req.body
-  Users.addSleepData(data)
-    .then(saved => {
-      res.status(201).json(saved);
-    })
-    .catch(error => {
-      res.status(500).json(error);
-    });
-});
+// // -- /api/users/sleepdata
+// router.post('/sleepdata', (req, res) => {
+//   const data = req.body
+//   Users.addSleepData(data)
+//     .then(saved => {
+//       res.status(201).json(saved);
+//     })
+//     .catch(error => {
+//       res.status(500).json(error);
+//     });
+// });
 
-// -- /api/users/sleepdata/:id
-router.put("/sleepdata/:id",(req, res) => {
-  const changes = req.body;
-  Users.updateSleepData(req.params.id, changes)
-  .then(user => {
-      if(user) {
-       return   res.status(200).json(user);
-      } else {
-          return res.status(404).json({ message: "The data with the specified ID does not exist." })
-      }
-  })
-  .catch(error => {
-      console.log(error)
-      res.status(500).json({ error: "The data information could not be modified." })
-  })
-})
+// // -- /api/users/sleepdata/:id
+// router.put("/sleepdata/:id",(req, res) => {
+//   const changes = req.body;
+//   Users.updateSleepData(req.params.id, changes)
+//   .then(user => {
+//       if(user) {
+//        return   res.status(200).json(user);
+//       } else {
+//           return res.status(404).json({ message: "The data with the specified ID does not exist." })
+//       }
+//   })
+//   .catch(error => {
+//       console.log(error)
+//       res.status(500).json({ error: "The data information could not be modified." })
+//   })
+// })
 
 
-// -- /api/users/sleepdatadelete/:id
-router.delete("/sleepdatadelete/:id", (req, res) => {
-  Users.removeSleepData(req.params.id)
-  .then(count => {
-      if( count > 0 ){
-         return res.status(200).json({ message: 'The data has been nuked' })
-      } else {
-          return res.status(404).json({ message: "The data with the specified ID does not exist." })
-      }
-  })
-  .catch(error => {
-      console.log(error) 
-          res.status(500).json({ error: "The data could not be removed" })
-      })
-})
+// // -- /api/users/sleepdatadelete/:id
+// router.delete("/sleepdatadelete/:id", (req, res) => {
+//   Users.removeSleepData(req.params.id)
+//   .then(count => {
+//       if( count > 0 ){
+//          return res.status(200).json({ message: 'The data has been nuked' })
+//       } else {
+//           return res.status(404).json({ message: "The data with the specified ID does not exist." })
+//       }
+//   })
+//   .catch(error => {
+//       console.log(error) 
+//           res.status(500).json({ error: "The data could not be removed" })
+//       })
+// })
 
 module.exports = router;
