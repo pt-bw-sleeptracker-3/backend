@@ -28,10 +28,7 @@ function add(userData) {
 }
 
 function addSleepData(sleepData) {
-    return db("sleepData")
-        .join('sleepData as sd', 'sd.id', 'sd.user_id')
-        .where('users.id', id)
-        .insert(sleepData);
+    return db("sleepData").insert(sleepData);
 }
 
 function update(id, user) {
