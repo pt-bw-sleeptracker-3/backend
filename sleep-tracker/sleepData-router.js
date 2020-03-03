@@ -22,7 +22,7 @@ function validateToken(req,res,next) {
 ////////////// SLEEPDATA ENDPOINTS /////////////////////////////
 
 
-// -- api/users/sleepdata
+// -- api/sleepdata
 router.get('/sleepdata', validateToken, (req, res) => {
   Users.findSleepData()
   .then(sleepData => {
@@ -34,7 +34,7 @@ router.get('/sleepdata', validateToken, (req, res) => {
 })
 
 
-// -- /api/users/sleepdata/:id
+// -- /api/sleepdata/:id
 router.get('/sleepdata/:id', (req, res) => {
   const id = req.params.id
   Users.findByIdSleepData(id)
@@ -47,7 +47,7 @@ router.get('/sleepdata/:id', (req, res) => {
 })
 
 
-// -- /api/users/sleepdata
+// -- /api/sleepdata
 router.post('/sleepdata', (req, res) => {
   const data = req.body
   Users.addSleepData(data)
