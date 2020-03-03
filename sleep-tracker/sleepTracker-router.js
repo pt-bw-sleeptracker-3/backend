@@ -25,7 +25,7 @@ router.get('/users', authrequired, (req, res) => {
   })
 })
 
-router.get('/users/:id', authrequired, (req, res) => {
+router.get('/users/:id', (req, res) => {
   Users.findById()
   .then(users => {
       res.json(users)
