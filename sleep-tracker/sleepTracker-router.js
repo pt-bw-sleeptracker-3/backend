@@ -87,7 +87,9 @@ router.get('/sleepdata', (req, res) => {
   })
 })
 
-router.get('/:id', (req, res) => {
+
+// -- 
+router.get('/sleepdata/:id', (req, res) => {
   const id = req.params.id
   Users.findByIdSleepData(id)
   .then(users => {
@@ -102,7 +104,6 @@ router.get('/:id', (req, res) => {
 // -- /api/users/sleepdata
 router.post('/sleepdata', (req, res) => {
   const data = req.body
-
   Users.addSleepData(data)
     .then(saved => {
       res.status(201).json(saved);
