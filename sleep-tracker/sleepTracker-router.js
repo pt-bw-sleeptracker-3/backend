@@ -26,7 +26,9 @@ router.get('/users', authrequired, (req, res) => {
 })
 
 router.get('/users/:id', (req, res) => {
-  Users.findById()
+const id = req.params.id
+
+  Users.findById(id)
   .then(users => {
       res.json(users)
   })
@@ -86,12 +88,14 @@ router.get('/sleepdata', (req, res) => {
 })
 
 router.get('/sleepdata/:id', authrequired, (req, res) => {
-  Users.findByIdSleepData()
+  const id = req.params.id
+
+  Users.findByIdSleepData(id)
   .then(users => {
       res.json(users)
   })
   .catch(err => {
-      res.status(500).json({ message: 'Failed to get users' })
+      res.status(500).json({ message: 'Failed to get Sleep Data' })
   })
 })
 
