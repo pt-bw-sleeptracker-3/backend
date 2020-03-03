@@ -25,6 +25,7 @@ router.get('/users', authrequired, (req, res) => {
   })
 })
 
+// -- /api/users/:id
 router.get('/:id', (req, res) => {
 const id = req.params.id
   Users.findById(id)
@@ -86,9 +87,8 @@ router.get('/sleepdata', (req, res) => {
   })
 })
 
-router.get('/sleepdata/:id', authrequired, (req, res) => {
+router.get('/:id', (req, res) => {
   const id = req.params.id
-
   Users.findByIdSleepData(id)
   .then(users => {
       res.json(users)
