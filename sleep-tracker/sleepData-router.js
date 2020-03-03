@@ -78,7 +78,7 @@ router.put("/sleepdata/:id",(req, res) => {
 
 
 // -- /api/users/sleepdatadelete/:id
-router.delete("/sleepdatadelete/:id", (req, res) => {
+router.delete("/delete/:id", (req, res) => {
   Users.removeSleepData(req.params.id)
   .then(count => {
       if( count > 0 ){
