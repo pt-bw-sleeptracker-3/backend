@@ -25,6 +25,17 @@ router.get('/users', authrequired, (req, res) => {
   })
 })
 
+router.get('/users/:id', authrequired, (req, res) => {
+  Users.findById()
+  .then(users => {
+      res.json(users)
+  })
+  .catch(err => {
+      res.status(500).json({ message: 'Failed to get users' })
+  })
+})
+
+
 
 // -- /api/users/:id * can only change name
 router.put("/:id",(req, res) => {
@@ -73,6 +84,17 @@ router.get('/sleepdata', (req, res) => {
       res.status(500).json({ message: 'Failed to get sleep data' })
   })
 })
+
+router.get('/sleepdata/:id', authrequired, (req, res) => {
+  Users.findById()
+  .then(users => {
+      res.json(users)
+  })
+  .catch(err => {
+      res.status(500).json({ message: 'Failed to get users' })
+  })
+})
+
 
 // -- /api/users/sleepdata
 router.post('/sleepdata', (req, res) => {

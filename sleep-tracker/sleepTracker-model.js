@@ -5,8 +5,8 @@ function find() {
     return db("users");
 }
 
-function findSleepData() {
-    return db("sleepData");
+function findSleepData(id) {
+    return db("sleepData").where('user_id',id);
 }
 
 function findById(id) {
