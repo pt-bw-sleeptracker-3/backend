@@ -48,7 +48,7 @@ router.get('/sleepdata/:id', (req, res) => {
 
 
 // -- /api/sleepdata
-router.post('/sleepdata', (req, res) => {
+router.post('/sleepdata/:id', (req, res) => {
   const data = req.body
   Users.addSleepData(data)
     .then(saved => {
