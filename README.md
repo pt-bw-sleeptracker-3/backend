@@ -26,4 +26,20 @@ Testing Web APIs
 Your primary role as a Back-end Architect
 You will use your skills to be responsible for the back-end architecture of this project. You will work closely with your Front End Architect and your Scrum Master in order to discover project needs and deliver working Endpoints for your application.
 
-# SleepTracker Endpoints
+# SleepTracker
+
+### Endpoints
+
+| Method | Endpoint                | Description                                                                                                                                                                 |
+| ------ | ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| POST   | /api/auth/login              | Logs in user                                                                                                         |
+| POST   | /api/auth/register | Creates a new user                                                                   |
+| GET    | /api/users              | Returns an array of all the users objects contained in the database                                                                                                        |
+| GET    | /api/users/:id          | Returns the users object with the specified id.                                                                                                                              |
+| DELETE | /api/users/userdelete/:id          | Removes the user with the specified id |
+| PUT    | /api/users/:id         | Updates the users with the specified `id` using data from the `request body`. Returns the modified document, **NOT the original**.                                           |
+| POST   | /api/sleepdata/:id | Creates a new sleep data                                                                   |
+| GET    | /api/sleepdata            | Returns an array of all the users objects contained in the database                                                                                                        |
+| GET    | /api/sleepdata/:id        | Returns the sleep data object with the specified id.                                                                                                                              |
+| DELETE | /api/users/sleepdatadelete/:id          | Removes the sleep data with the specified id |
+| PUT    | /api/users/sleepdata/:id         | Updates the sleep data with the specified `id` using data from the `request body`. Returns the modified document, **NOT the original**.                                           |
